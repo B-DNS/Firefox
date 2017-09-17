@@ -92,7 +92,7 @@ function showNotification(title, msg) {
     type: 'basic',
     title: title,
     iconUrl: msg ? 'icon-64.png' : '',
-    message: msg || '',
+    message: msg || ''
   });
 }
 

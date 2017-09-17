@@ -1,4 +1,15 @@
-var apiBaseURLs = ['https://bdns.bz/r/', 'https://bdns.io/r/'];
+var apiBaseURLs = [
+  'https://bdns.co/r/',
+  'https://bdns.name/r/',
+  'https://bdns.us/r/',
+  'https://bdns.bz/r/',
+  'https://bdns.by/r/',
+  'https://bdns.ws/r/',
+  'https://bdns.at/r/',
+  'https://bdns.im/r/',
+  'https://bdns.io/r/',
+];
+
 var apiBaseUrlIndex = Math.floor(Math.random() * apiBaseURLs.length);
 
 // Additionally restricted by manifest's permissions.
@@ -7,11 +18,18 @@ var allURLs = {
     //'<all_urls>',
     // *:// only matches http(s).
     // ws(s):// - Chrome 58+, not supported by Firefox yet.
-    "*://*.bit/*",   "ftp://*.bit/*",   "ws://*.bit/*",   "wss://*.bit/*",
-    "*://*.lib/*",   "ftp://*.lib/*",   "ws://*.lib/*",   "wss://*.lib/*",
-    "*://*.emc/*",   "ftp://*.emc/*",   "ws://*.emc/*",   "wss://*.emc/*",
-    "*://*.bazar/*", "ftp://*.bazar/*", "ws://*.bazar/*", "wss://*.bazar/*",
-    "*://*.coin/*",  "ftp://*.coin/*",  "ws://*.coin/*",  "wss://*.coin/*",
+    // ws(s):// removed because they upset AMO validation staff and Google's
+    // uploader when present in manifest.json.
+    "*://*.bit/*",   "ftp://*.bit/*",
+      //"ws://*.bit/*",   "wss://*.bit/*",
+    "*://*.lib/*",   "ftp://*.lib/*",
+      //"ws://*.lib/*",   "wss://*.lib/*",
+    "*://*.emc/*",   "ftp://*.emc/*",
+      //"ws://*.emc/*",   "wss://*.emc/*",
+    "*://*.bazar/*", "ftp://*.bazar/*",
+      //"ws://*.bazar/*", "wss://*.bazar/*",
+    "*://*.coin/*",  "ftp://*.coin/*",
+      //"ws://*.coin/*",  "wss://*.coin/*",
   ]
 };
 
