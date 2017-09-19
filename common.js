@@ -1,3 +1,4 @@
+// Update manifest when changed.
 var apiBaseURLs = [
   'https://bdns.co/r/',
   'https://bdns.name/r/',
@@ -18,18 +19,31 @@ var allURLs = {
     //'<all_urls>',
     // *:// only matches http(s).
     // ws(s):// - Chrome 58+, not supported by Firefox yet.
-    // ws(s):// removed because they upset AMO validation staff and Google's
+    // ws(s):// removed because they upset AMO review staff and Google's
     // uploader when present in manifest.json.
-    "*://*.bit/*",   "ftp://*.bit/*",
-      //"ws://*.bit/*",   "wss://*.bit/*",
-    "*://*.lib/*",   "ftp://*.lib/*",
-      //"ws://*.lib/*",   "wss://*.lib/*",
-    "*://*.emc/*",   "ftp://*.emc/*",
-      //"ws://*.emc/*",   "wss://*.emc/*",
-    "*://*.bazar/*", "ftp://*.bazar/*",
-      //"ws://*.bazar/*", "wss://*.bazar/*",
-    "*://*.coin/*",  "ftp://*.coin/*",
-      //"ws://*.coin/*",  "wss://*.coin/*",
+    // Namecoin
+    "*://*.bit/*",    "ftp://*.bit/*",
+    // Emercoin
+    "*://*.lib/*",    "ftp://*.lib/*",
+    "*://*.emc/*",    "ftp://*.emc/*",
+    "*://*.bazar/*",  "ftp://*.bazar/*",
+    "*://*.coin/*",   "ftp://*.coin/*",
+    // OpenNIC - https://wiki.opennic.org/opennic/dot
+    "*://*.bbs/*",    "ftp://*.bbs/*",
+    "*://*.chan/*",   "ftp://*.chan/*",
+    "*://*.cyb/*",    "ftp://*.cyb/*",
+    "*://*.dyn/*",    "ftp://*.dyn/*",
+    "*://*.geek/*",   "ftp://*.geek/*",
+    "*://*.gopher/*", "ftp://*.gopher/*",
+    "*://*.indy/*",   "ftp://*.indy/*",
+    "*://*.libre/*",  "ftp://*.libre/*",
+    "*://*.neo/*",    "ftp://*.neo/*",
+    "*://*.null/*",   "ftp://*.null/*",
+    "*://*.o/*",      "ftp://*.o/*",
+    "*://*.oss/*",    "ftp://*.oss/*",
+    "*://*.oz/*",     "ftp://*.oz/*",
+    "*://*.parody/*", "ftp://*.parody/*",
+    "*://*.pirate/*", "ftp://*.pirate/*",
   ]
 };
 
