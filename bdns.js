@@ -146,13 +146,20 @@ browser.webRequest.onBeforeRequest.addListener(function (details) {
         return {cancel: true};
       }
     } else {
-      console.log('BDNS: #' + details.requestId + ' (' + url.domain + '): resolving, full URL: ' + url.url); //-
+      console.log('BDNS: #' + details.requestId + ' (' + url.domain + '): resolving at ' + (new Date).toTimeString() + ', full URL: ' + url.url); //-
 
       return new Promise(function (resolve, reject) {
         resolveViaAPI(url.domain, true, function (ips) {
           if (!ips) {
             showNotification('Resolution of .' + url.tld + ' is temporary unavailable');
             rotateApiHost();
+
+            if (!details.originUrl) {
+              // Add to tracked requests so that subsequent NS_ERROR_ABORT will
+              // trigger page reload and a repeated request to another API domain.
+              startedReqs[details.requestId] = details;
+              details._bdns_delayed = true;
+            }
           } else if (!ips.length) {
             cache.set(url.domain, []);
             showNotification('Non-existent .' + url.tld + ' domain: ' + url.domain);
@@ -191,7 +198,10 @@ browser.webRequest.onErrorOccurred.addListener(function (details) {
 
     if (tracked) {
       delete startedReqs[req];
-      browser.tabs.update(details.tabId, {url: tracked.url});
+
+      setTimeout(function () {
+        browser.tabs.update(details.tabId, {url: tracked.url});
+      }, tracked._bdns_delayed ? 1000 : 0);
     }
 
     break;
@@ -220,3 +230,4 @@ browser.alarms.onAlarm.addListener(function () {
   var count = cache.prune();
   console.log('BDNS: deleted ' + count + ' expired entries; cache size = ' + cache.length); //-
 });
+
