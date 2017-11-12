@@ -166,12 +166,23 @@ browser.webRequest.onBeforeRequest.addListener(function (details) {
           } else {
             cache.set(url.domain, ips);
 
-            if (!details.originUrl) {
+            console.log('BDNS: #' + details.requestId + ': originUrl: ' + details.originUrl); //-
+
+            // This check is supposed to inform the user when a page embeds a resource
+            // (e.g. <img>) from a B-TLD that wasn't yet resolved. But Firefox does not
+            // call onBeforeRequest for resources at all while calling it when following
+            // <a> to a page on an unresolved B-TLD (and setting originUrl so these two
+            // cases cannot be told apart). Nuts...
+            //
+            // Right now it works without side effects, but if this behavior changes
+            // - embedded resources will cause origin tab to be reloaded repeatedly
+            // until all their domains are resolved.
+            //if (!details.originUrl) {
               startedReqs[details.requestId] = details;
-            } else {
-              var originHost = parseURL(details.originUrl).domain;
-              showNotification(originHost + ' references a resource at ' + url.domain, 'The referenced resource will be unavailable until you reload this page.');
-            }
+            //} else {
+            //  var originHost = parseURL(details.originUrl).domain;
+            //  showNotification(originHost + ' references a resource at ' + url.domain, 'The referenced resource will be unavailable until you reload this page.');
+            //}
           }
 
           // Do it after XHR has finished, not in onBeforeRequest for better UX
@@ -212,7 +223,16 @@ browser.webRequest.onErrorOccurred.addListener(function (details) {
   // Proxy error.
   case 'NS_ERROR_NET_ON_CONNECTING_TO':
     if (cache.has(url.domain)) {
-      showNotification(url.domain + ' is down');
+      // NS_ERROR_NET_ON_CONNECTING_TO is fired for every unresponding IP that
+      // Firefox tries after receiving from PAC, thus user may see one or more
+      // such messages even if the domain opens up fine after several retries
+      // (we don't know if the domain will open or not in the end).
+      // Firefox caches the is-down state of IPs for some time so the message
+      // won't reappear before that for the same unavailable IPs.
+      var msg = cache.ips(url.domain).length > 1
+        ? 'may be down, retrying...' : 'is down';
+
+      showNotification(url.domain + ' ' + msg);
 
       if (cache.isExpired(url.domain, downCacheTTL)) {
         console.log('BDNS: ' + url.domain + ': down, removing to refetch'); //-
@@ -229,5 +249,23 @@ browser.alarms.create({periodInMinutes: 1});
 browser.alarms.onAlarm.addListener(function () {
   var count = cache.prune();
   console.log('BDNS: deleted ' + count + ' expired entries; cache size = ' + cache.length); //-
+});
+
+browser.tabs.onUpdated.addListener(function (id, changeInfo) {
+  var url = parseURL(changeInfo.url || '');
+
+  if (url) {
+    var supported = isSupportedTLD(url.tld);
+
+    console.info('BDNS: tab #' + id + ' updated to ' + (supported ? '' : 'un') + 'supported TLD, domain: ' + url.domain); //-
+
+    browser.browserAction[!supported ? 'enable' : 'disable'](id);
+  }
+});
+
+browser.browserAction.onClicked.addListener(function () {
+  browser.tabs.create({
+    url: "https://blockchain-dns.info"
+  });
 });
 

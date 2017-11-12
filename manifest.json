@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Blockchain DNS",
   "short_name": "B-DNS",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Resolves domains from decentralized blockchain name systems using BDNS public web API. Currently supported TLDs are: .bit (Namecoin), .lib .bazar .coin .emc (Emercoin), .bbs .chan .cyb .dyn .geek .gopher .indy .libre .neo .null .o .oss .oz .parody .pirate (OpenNIC).",
   "icons": {
     "16": "icon-16.png",
@@ -11,11 +11,21 @@
     "64": "icon-64.png",
     "128": "icon-128.png"
   },
+  "browser_action": {
+    "browser_style": false,
+    "default_icon": {
+      "16": "icon-16.png",
+      "24": "icon-24.png",
+      "32": "icon-32.png",
+      "64": "icon-64.png",
+      "128": "icon-128.png"
+    }
+  },
   "background": {
     "scripts": ["common.js", "cache.js", "bdns.js"]
   },
   "permissions": [
-    "webRequest", "webRequestBlocking", "proxy", "notifications", "alarms",
+    "webRequest", "webRequestBlocking", "proxy", "notifications", "alarms", "tabs",
     "https://bdns.bz/*", "https://bdns.io/*",  "https://bdns.co/*",
     "https://bdns.us/*", "https://bdns.ws/*",  "https://bdns.name/*",
     "https://bdns.at/*", "https://bdns.by/*",  "https://bdns.im/*",

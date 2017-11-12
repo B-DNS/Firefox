@@ -114,6 +114,11 @@ function parseURL(url) {
   }
 }
 
+// tld = 'bit'.
+function isSupportedTLD(tld) {
+  return allURLs.urls.indexOf('*://*.' + tld + '/*') != -1;
+}
+
 // done = function (ips), ips = [] if nx, [ip, ...] if xx, null on error.
 function resolveViaAPI(domain, async, done) {
   var xhr = new XMLHttpRequest;
