@@ -98,6 +98,10 @@ var allURLs = {
     "*://*.oz/*",     "ftp://*.oz/*",
     "*://*.parody/*", "ftp://*.parody/*",
     "*://*.pirate/*", "ftp://*.pirate/*",
+    "*://*.ku/*",     "ftp://*.ku/*",
+    "*://*.te/*",     "ftp://*.te/*",
+    "*://*.ti/*",     "ftp://*.ti/*",
+    "*://*.uu/*",     "ftp://*.uu/*",
   ]
 };
 

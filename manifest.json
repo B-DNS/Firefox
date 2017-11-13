@@ -48,7 +48,11 @@
     "*://*.oss/*",    "ftp://*.oss/*",
     "*://*.oz/*",     "ftp://*.oz/*",
     "*://*.parody/*", "ftp://*.parody/*",
-    "*://*.pirate/*", "ftp://*.pirate/*"
+    "*://*.pirate/*", "ftp://*.pirate/*",
+    "*://*.ku/*",     "ftp://*.ku/*",
+    "*://*.te/*",     "ftp://*.te/*",
+    "*://*.ti/*",     "ftp://*.ti/*",
+    "*://*.uu/*",     "ftp://*.uu/*"
   ],
   "homepage_url": "https://blockchain-dns.info",
 
