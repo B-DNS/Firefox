@@ -52,15 +52,15 @@
 
 // Update manifest when this list is changed.
 var apiBaseURLs = [
-  'https://bdns.co/r/',
-  'https://bdns.name/r/',
-  'https://bdns.us/r/',
-  'https://bdns.bz/r/',
-  'https://bdns.by/r/',
-  'https://bdns.ws/r/',
   'https://bdns.at/r/',
+  'https://bdns.by/r/',
+  'https://bdns.co/r/',
   'https://bdns.im/r/',
   'https://bdns.io/r/',
+  'https://bdns.link/r/',
+  'https://bdns.nu/r/',
+  'https://bdns.pro/r/',
+  'https://b-dns.se/r/',
 ];
 
 var apiBaseUrlIndex = Math.floor(Math.random() * apiBaseURLs.length);
@@ -102,6 +102,7 @@ var allURLs = {
     "*://*.te/*",     "ftp://*.te/*",
     "*://*.ti/*",     "ftp://*.ti/*",
     "*://*.uu/*",     "ftp://*.uu/*",
+    "*://*.fur/*",    "ftp://*.fur/*",
   ]
 };
 
@@ -177,4 +178,3 @@ function rotateApiHost() {
 
   console.info('BDNS: switched to API server #' + apiBaseUrlIndex + ' at ' + (new Date).toTimeString()); //-
 }
-

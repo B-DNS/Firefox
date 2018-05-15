@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Blockchain DNS",
   "short_name": "B-DNS",
-  "version": "1.0.9",
+  "version": "1.0.12",
   "description": "Resolves domains from decentralized blockchain name systems using BDNS public web API. Currently supported TLDs are: .bit (Namecoin), .lib .bazar .coin .emc (Emercoin), .bbs .chan .cyb .dyn .geek .gopher .indy .libre .neo .null .o .oss .oz .parody .pirate (OpenNIC).",
   "icons": {
     "16": "icon-16.png",
@@ -26,9 +26,9 @@
   },
   "permissions": [
     "webRequest", "webRequestBlocking", "proxy", "notifications", "alarms", "tabs",
-    "https://bdns.bz/*", "https://bdns.io/*",  "https://bdns.co/*",
-    "https://bdns.us/*", "https://bdns.ws/*",  "https://bdns.name/*",
-    "https://bdns.at/*", "https://bdns.by/*",  "https://bdns.im/*",
+    "https://bdns.at/*", "https://bdns.by/*",  "https://bdns.co/*",
+    "https://bdns.im/*", "https://bdns.io/*",  "https://bdns.link/*",
+    "https://bdns.nu/*", "https://bdns.pro/*", "https://b-dns.se/*",
     "*://*.bit/*",    "ftp://*.bit/*",
     "*://*.lib/*",    "ftp://*.lib/*",
     "*://*.emc/*",    "ftp://*.emc/*",
@@ -52,7 +52,8 @@
     "*://*.ku/*",     "ftp://*.ku/*",
     "*://*.te/*",     "ftp://*.te/*",
     "*://*.ti/*",     "ftp://*.ti/*",
-    "*://*.uu/*",     "ftp://*.uu/*"
+    "*://*.uu/*",     "ftp://*.uu/*",
+    "*://*.fur/*",    "ftp://*.fur/*"
   ],
   "homepage_url": "https://blockchain-dns.info",
 
@@ -66,4 +67,3 @@
     "url": "https://blockchain-dns.info"
   }
 }
-

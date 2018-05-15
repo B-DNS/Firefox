@@ -268,4 +268,3 @@ browser.browserAction.onClicked.addListener(function () {
     url: "https://blockchain-dns.info"
   });
 });
-

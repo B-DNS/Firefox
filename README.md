@@ -42,4 +42,3 @@ Debug (unsigned) extensions are only loaded for the current session. They will d
 ![Step 3](https://blockchain-dns.info/img/debug-load/firefox-3.png)
 ![Step 4](https://blockchain-dns.info/img/debug-load/firefox-4.png)
 ![Step 5](https://blockchain-dns.info/img/debug-load/firefox-5.png)
-
